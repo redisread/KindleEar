@@ -16,7 +16,7 @@ class ChinaDaily(BaseFeedBook):
     title = u'每日学英语' # 设定标题
     __author__ = u'每日学英语' # 设定作者
     description = u'用微信学英语，让英语学习成为一种习惯。可以学到精彩短句、口语，还可以查单词，搜英语资料. ' # 设定简介
-    language = 'zh' # 设定语言
+    language = 'zh'  # 设定语言
 
     coverfile = 'cv_chinadaily.jpg' # 设定封面图片
     mastheadfile = 'mh_chinadaily.gif' # 设定标头图片
