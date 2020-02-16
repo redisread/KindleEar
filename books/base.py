@@ -320,6 +320,7 @@ class BaseFeedBook:
                         summary = e.summary if hasattr(e, 'summary') else None
                         desc = e.content[0]['value'] if (hasattr(e, 'content')
                             and e.content[0]['value']) else None
+                        dcpt = e.description if hasattr(e,'description') else None
 
                         #同时存在，因为有的RSS全文内容放在summary，有的放在content
                         #所以认为内容多的为全文
@@ -327,6 +328,8 @@ class BaseFeedBook:
                             desc = summary if len(summary) > len(desc) else desc
                         elif summary:
                             desc = summary
+                        elif dcpt:
+                            desc = dcpt
 
                         if not desc:
                             if not urlfeed:
