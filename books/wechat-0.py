@@ -15,7 +15,7 @@ def getBook():
     return MyWechat
 
 class MyWechat(BaseFeedBook):
-    title                 = u'微信公众号'
+    title                 = u'微信公众号A'
     description           = u'微信订阅内容。。。'
     language              = 'zh-cn'
     feed_encoding         = "utf-8"
@@ -23,15 +23,7 @@ class MyWechat(BaseFeedBook):
     mastheadfile          = "mh_xueqiu.gif"
     coverfile             = "cv_xueqiu.jpg"
     oldest_article        = 3   #距离几天的文章
-    #fulltext_by_readability = False # 取消自动处理网页
-
-    feeds = [ (u'英语', 'https://rsshub.app/wechat/ershicimi/10589'),
-              (u'今日话题', 'https://rsshub.app/wechat/ce//5d059616f1531303a827d8a9'),]
-    
-    def url4forwarder(self, url):
-        #生成经过转发器的URL
-        return SHARE_FUCK_GFW_SRV % urllib.quote(url)
-    
-    def fetcharticle(self, url, opener, decoder):
-        #链接网页获取一篇文章
-        return BaseFeedBook.fetcharticle(self, self.url4forwarder(url), opener, decoder)
+    fulltext_by_readability = False # 取消自动处理网页
+    fulltext_by_instapaper = True
+    feeds = [ (u'英语', 'https://rsshub.app/wechat/ershicimi/23'),
+              (u'程序员', 'https://rsshub.app/wechat/ershicimi/59'),]

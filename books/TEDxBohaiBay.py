@@ -12,9 +12,9 @@ def getBook():
     return TEDxBohaiBay
 
 class TEDxBohaiBay(BaseFeedBook):
-    title                 = u'TED渤海湾'
+    title                 = u'TED渤海湾A'
     description           = u'推送最新的TED内容，来自传送门抓取的TEDxBohaiBay微信公众账号文章'
-    language              = 'en' #TED中英文双语，为en则能英文查词
+    language              = 'zh-cn' #TED中英文双语，为en则能英文查词
     feed_encoding         = "utf-8"
     page_encoding         = "utf-8"
     mastheadfile          = "mh_chuansongme.gif"
@@ -23,13 +23,13 @@ class TEDxBohaiBay(BaseFeedBook):
     oldest_article        = 3
     #设置为True排版也很好（往往能更好的剔除不相关内容），
     #除了缺少标题下的第一幅图
+    fulltext_by_instapaper = True
     fulltext_by_readability = False
-    keep_only_tags = [dict(name='div', attrs={'id':'page-content'})]
+    keep_only_tags = [dict(name='div', attrs={'id':'img-content'})]
     remove_classes = ['page-toolbar']
 
     feeds = [
-            (u'TED渤海湾', 'https://rsshub.app/wechat/csm/tedxbohaibay'),
-            (u'每日英语', 'https://rsshub.app/wechat/csm/daily-english'),
+            (u'每日学英语', 'https://www.ershicimi.com/a/10589'),
            ]
 
     def ParseFeedUrls(self):
@@ -52,17 +52,17 @@ class TEDxBohaiBay(BaseFeedBook):
                 content = AutoDecoder(False).decode(result.content,opener.realurl,result.headers)
 
             soup = BeautifulSoup(content, 'lxml')
-            for article in soup.find_all('div', attrs={'class':'feed_item_question'}):
-                title = article.find('a', attrs={'class':'question_link'})
+            for article in soup.find_all('div', attrs={'class':'weui_media_bd'}):
+                title = article.find('a', attrs=None)
                 if not title:
                     continue
 
                 #获取发布时间
-                pubdate = article.find('span',attrs={'class':'timestamp'})
+                pubdate = article.find('p',attrs={'class':'weui_media_extra_info'})
                 if not pubdate:
                     continue
                 try:
-                    pubdate = datetime.datetime.strptime(pubdate.string, '%Y-%m-%d')
+                    pubdate = datetime.datetime.strptime(pubdate['title'].split(' ')[0], '%Y-%m-%d')
                 except Exception as e:
                     self.log.warn('parse pubdate failed for [%s] : %s'%(url,str(e)))
                     continue
