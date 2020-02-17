@@ -54,13 +54,13 @@ class TEDxBohaiBay(BaseFeedBook):
             soup = BeautifulSoup(content, 'lxml')
             for article in soup.find_all('div', attrs={'class':'weui_media_bd'}):
                 title = article.find('a', attrs=None)
-                if not title:
-                    continue
+                # if not title:
+                #     continue
 
                 #获取发布时间
                 pubdate = article.find('p',attrs={'class':'weui_media_extra_info'})
-                if not pubdate:
-                    continue
+                # if not pubdate:
+                #     continue
                 try:
                     pubdate = datetime.datetime.strptime(pubdate['title'].split(' ')[0], '%Y-%m-%d')
                 except Exception as e:
@@ -70,8 +70,8 @@ class TEDxBohaiBay(BaseFeedBook):
                 #确定文章是否需要推送，时区固定为北京时间
                 tnow = datetime.datetime.utcnow()+datetime.timedelta(hours=8)
                 delta = tnow - pubdate
-                if self.oldest_article > 0 and delta.days > self.oldest_article:
-                    continue
+                # if self.oldest_article > 0 and delta.days > self.oldest_article:
+                #     continue
 
                 href = title['href'] if title['href'].startswith('http') else self.urljoin(url,title['href'])
 
