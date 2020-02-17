@@ -27,3 +27,4 @@ class MyWechat(BaseFeedBook):
     fulltext_by_instapaper = True
     feeds = [ (u'英语', 'https://rsshub.app/wechat/ershicimi/23'),
               (u'程序员', 'https://rsshub.app/wechat/ershicimi/59'),]
+    # 
