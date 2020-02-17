@@ -20,7 +20,7 @@ class TEDxBohaiBay(BaseFeedBook):
     mastheadfile          = "mh_chuansongme.gif"
     coverfile             = "cv_chuansongme.jpg"
     network_timeout       = 60
-    oldest_article        = 1
+    oldest_article        = 3
     #设置为True排版也很好（往往能更好的剔除不相关内容），
     #除了缺少标题下的第一幅图
     fulltext_by_readability = False
@@ -28,7 +28,8 @@ class TEDxBohaiBay(BaseFeedBook):
     remove_classes = ['page-toolbar']
 
     feeds = [
-            (u'TED渤海湾', 'http://chuansongme.com/account/tedxbohaibay'),
+            (u'TED渤海湾', 'https://rsshub.app/wechat/csm/tedxbohaibay'),
+            (u'每日英语', 'https://rsshub.app/wechat/csm/daily-english'),
            ]
 
     def ParseFeedUrls(self):
